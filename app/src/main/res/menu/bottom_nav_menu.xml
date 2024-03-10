@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_comic"
+        android:icon="@drawable/baseline_comic_24"
+        android:title="TRUYỆN TRANH" />
+
+    <item
+        android:id="@+id/navigation_bxh"
+        android:icon="@drawable/baseline_bar_chart_24"
+        android:title="BXH TRUYỆN" />
+
+    <item
+        android:id="@+id/navigation_bxhnd"
+        android:icon="@drawable/baseline_article_24"
+        android:title="BXH" />
+
+    <item
+        android:id="@+id/navigation_person"
+        android:icon="@drawable/baseline_face_24"
+        android:title="CÁ NHÂN" />
+
+</menu>
