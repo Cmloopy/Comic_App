@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_bxhnd"
-        android:name="com.example.comicapp.ui.bxh.BXHFragment"
+        android:name="com.example.comicapp.ui.bxhnd.BXHNDFragment"
         android:label="@string/title_bxhnd"
         tools:layout="@layout/fragment_bxhnd" />
 

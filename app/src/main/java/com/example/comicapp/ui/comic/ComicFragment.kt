@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 class ComicFragment : Fragment() {
 
     private lateinit var binding: FragmentComicBinding
-    private val storageReference = FirebaseStorage.getInstance().reference.child("nguyen_ton/chapter_1/001.jpg")
+    private val storageReference = FirebaseStorage.getInstance().reference.child("nguyen_ton/chapter_1/002.jpg")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
