@@ -21,7 +21,8 @@ import kotlinx.coroutines.withContext
 class ComicFragment : Fragment() {
 
     private lateinit var binding: FragmentComicBinding
-    private val storageReference = FirebaseStorage.getInstance().reference.child("nguyen_ton/chapter_1/002.jpg")
+    private val storageReference = FirebaseStorage.getInstance().reference.child("nguyen_ton/chapter_1/005.jpg")
+    private val storageReference2 = FirebaseStorage.getInstance().reference.child("nguyen_ton/chapter_1/006.jpg")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,9 +41,14 @@ class ComicFragment : Fragment() {
                     storageReference.downloadUrl.await()
                 }
                 Glide.with(requireContext()).load(downloadUrl).into(binding.imageView)
+                var downloadUrl2 = withContext(Dispatchers.IO) {
+                    storageReference2.downloadUrl.await()
+                }
+                Glide.with(requireContext()).load(downloadUrl2).into(binding.imageView2)
             } catch (e: Exception) {
                 // Xử lý khi không thể tải ảnh
             }
+
         }
     }
 }
