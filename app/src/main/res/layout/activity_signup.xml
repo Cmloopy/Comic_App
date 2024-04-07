@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="120dp"
+    tools:context=".SignupActivity">
+
+    <TextView
+        android:id="@+id/textViewDangKi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="@color/lavender"
+        android:text="Đăng Kí Tài Khoản" />
+
+    <TextView
+        android:id="@+id/textViewTaiKhoanDangKi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/lavender"
+        android:text="Tài Khoản:" />
+
+    <EditText
+        android:id="@+id/editTextTaiKhoanDangKi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:minHeight="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:inputType="text"
+        android:drawableRight="@drawable/baseline_person_24"
+        android:hint="Username" />
+
+    <TextView
+        android:id="@+id/textViewMatKhauDangKi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/lavender"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
+        android:text="Mật Khẩu:" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:minHeight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:inputType="textPassword"
+        android:drawableRight="@drawable/baseline_lock_24"
+        android:hint="Password"/>
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/lavender"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:text="Email:" />
+
+    <EditText
+        android:id="@+id/editTextEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:minHeight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:inputType="textEmailAddress"
+        android:drawableRight="@drawable/baseline_email_24"
+        android:hint="Email"/>
+
+    <TextView
+        android:id="@+id/textViewSDT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:text="Số Điện Thoại:" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:minHeight="50dp"
+        android:drawableRight="@drawable/baseline_phone_android_24"
+        android:inputType="phone"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:hint="Phone"/>
+
+    <TextView
+        android:id="@+id/textViewNameHT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/lavender"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:text="Tên Hiển Thị:" />
+
+    <EditText
+        android:id="@+id/editTextTenHT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:inputType="text"
+        android:minHeight="50dp"
+        android:drawableRight="@drawable/baseline_namee_24"
+        android:hint="Name" />
+
+    <Button
+        android:id="@+id/buttonDangKi"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/botron_button"
+        android:text="ĐĂNG KÍ" />
+
+    <Button
+        android:id="@+id/buttonTroVeTrangDN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/botron_button"
+        android:text="VỀ TRANG ĐĂNG NHẬP" />
+
+</LinearLayout>

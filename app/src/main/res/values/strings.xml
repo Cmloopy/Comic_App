@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">ComicApp</string>
-    <string name="title_home">Trang chủ</string>
-    <string name="title_bxh">Bảng xếp hạng truyện tranh</string>
-    <string name="title_bxhnd">Bảng xếp hạng</string>
-    <string name="title_me">Cá nhân</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

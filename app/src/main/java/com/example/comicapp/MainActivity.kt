@@ -1,35 +1,43 @@
 package com.example.comicapp
 
+
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.Toast
+
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import kotlinx.coroutines.withContext
 import com.example.comicapp.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.SQLException
 
+private lateinit var binding: ActivityMainBinding
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val navView: BottomNavigationView = binding.navView
-
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_comic, R.id.navigation_bxh, R.id.navigation_bxhnd, R.id.navigation_person
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        binding = ActivityMainBinding.inflate(layoutInflater);
+        setContentView(binding.getRoot());
+        binding.buttonDangNhap.setOnClickListener {
+            var tk =  binding.editTextTaiKhoan.text.toString()
+            var mk = binding.editTextMatKhau.text.toString()
+            if(tk == "admin" && mk == "admin"){
+                var trangchinh = Intent(this, TrangChu::class.java)
+                startActivity(trangchinh)
+            }
+            else {
+                binding.editTextMatKhau.setText("")
+                binding.editTextTaiKhoan.setText("")
+                Toast.makeText(this, "Sai tkmk", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.buttonChuyenTrangDK.setOnClickListener {
+            var ctdk = Intent(this,SignupActivity::class.java)
+            startActivity(ctdk)
+        }
     }
 }
