@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView.ScaleType
+import android.widget.Toast
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.comicapp.R
@@ -18,7 +19,7 @@ class TrangChinhFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var view:View = inflater.inflate(R.layout.fragment_trangchinh, container, false)
-
+        val data = arguments?.getString("id")
         var imageSlider: ImageSlider = view.findViewById(R.id.banner)
         var arrlist: ArrayList<SlideModel> = ArrayList()
         arrlist.add(SlideModel(R.drawable.banner1))

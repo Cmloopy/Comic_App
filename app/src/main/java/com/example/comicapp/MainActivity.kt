@@ -1,43 +1,67 @@
 package com.example.comicapp
 
-
 import android.content.Intent
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.widget.Toast
-
 import androidx.appcompat.app.AlertDialog
+
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.withContext
 import com.example.comicapp.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.SQLException
+
 
 private lateinit var binding: ActivityMainBinding
 class MainActivity : AppCompatActivity() {
+    private lateinit var openDB: OpenDB
+    private lateinit var database: SQLiteDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater);
         setContentView(binding.getRoot());
+        openDB = OpenDB(this)
+        database = openDB.readableDatabase // hoặc openDB.writableDatabase
         binding.buttonDangNhap.setOnClickListener {
-            var tk =  binding.editTextTaiKhoan.text.toString()
-            var mk = binding.editTextMatKhau.text.toString()
-            if(tk == "admin" && mk == "admin"){
-                var trangchinh = Intent(this, TrangChu::class.java)
-                startActivity(trangchinh)
+            if(checkDangNhap()){
+                val userid = binding.editTextTaiKhoan.text.toString()
+                val intent = Intent(this,TrangChu::class.java)
+                intent.putExtra("id",userid)
+                database.close()
+                startActivity(intent)
             }
-            else {
-                binding.editTextMatKhau.setText("")
+            else
+            {
+                showAlertDialog()
                 binding.editTextTaiKhoan.setText("")
-                Toast.makeText(this, "Sai tkmk", Toast.LENGTH_SHORT).show()
+                binding.editTextMatKhau.setText("")
             }
         }
         binding.buttonChuyenTrangDK.setOnClickListener {
-            var ctdk = Intent(this,SignupActivity::class.java)
+            val ctdk = Intent(this,SignupActivity::class.java)
+            database.close()
             startActivity(ctdk)
         }
+    }
+
+    private fun checkDangNhap(): Boolean {
+        val tk = binding.editTextTaiKhoan.text.toString()
+        val mk = binding.editTextMatKhau.text.toString()
+        val cursor: Cursor = database.rawQuery("SELECT * FROM user WHERE username = '$tk' AND pass = '$mk'",null)
+        cursor.use {
+            if(cursor.moveToFirst()){
+                return true
+            }
+        }
+        return false
+    }
+    private fun showAlertDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Oops!! Lỗi rồi >.<")
+        builder.setMessage("Sai tài khoản hoặc mật khẩu rồi kìa!")
+        builder.setPositiveButton("OK") { dialog, which ->
+            dialog.dismiss() // Đóng AlertDialog
+        }
+        // Tạo và hiển thị AlertDialog
+        val dialog = builder.create()
+        dialog.show()
     }
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.comicapp.R
 
 class TopFragment : Fragment() {
@@ -13,8 +14,10 @@ class TopFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var viewTop:View = inflater.inflate(R.layout.fragment_top, container, false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top, container, false)
+        val data = arguments?.getString("id")
+        return viewTop
     }
 
 

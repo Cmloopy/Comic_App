@@ -1,6 +1,7 @@
 package com.example.comicapp
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.comicapp.databinding.ActivityTrangchuBinding
@@ -18,23 +19,39 @@ class TrangChu: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTrangchuBinding.inflate(layoutInflater);
         setContentView(binding.getRoot());
-        replaceFragment(TrangChinhFragment())
+        val data = intent.getStringExtra("id")
+        //Bundle đẩy dữ liệu qua các frag
+        val bundle = Bundle()
+        bundle.putString("id",data)
+
+        val trangChinhFragment = TrangChinhFragment()
+        trangChinhFragment.arguments = bundle
+        replaceFragment(trangChinhFragment)
+
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.bottom_trangchinh -> {
-                    replaceFragment(TrangChinhFragment())
+                    val fragment = TrangChinhFragment()
+                    fragment.arguments = bundle
+                    replaceFragment(fragment)
                     true
                 }
                 R.id.bottom_bxh -> {
-                    replaceFragment(BxhFragment())
+                    val fragment = BxhFragment()
+                    fragment.arguments = bundle
+                    replaceFragment(fragment)
                     true
                 }
                 R.id.bottom_top -> {
-                    replaceFragment(TopFragment())
+                    val fragment = TopFragment()
+                    fragment.arguments = bundle
+                    replaceFragment(fragment)
                     true
                 }
                 R.id.bottom_canhan -> {
-                    replaceFragment(CanhanFragment())
+                    val fragment = CanhanFragment()
+                    fragment.arguments = bundle
+                    replaceFragment(fragment)
                     true
                 }
                 else -> false
