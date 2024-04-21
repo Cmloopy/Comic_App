@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.comicapp.MainActivity
 import com.example.comicapp.OpenDB
@@ -38,13 +39,17 @@ class CanhanFragment : Fragment() {
         }
 
         binding.buttonDMK.setOnClickListener {
-
+            changePasswordDialog()
         }
 
         binding.buttonDangXuat.setOnClickListener {
             showAlertDialog()
         }
         return binding.root
+    }
+
+    private fun changePasswordDialog() {
+        
     }
 
     private fun showAlertDialog() {
