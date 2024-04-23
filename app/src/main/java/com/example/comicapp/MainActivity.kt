@@ -12,20 +12,25 @@ import com.example.comicapp.databinding.ActivityMainBinding
 
 private lateinit var binding: ActivityMainBinding
 class MainActivity : AppCompatActivity() {
+    //private var db:CopyDbHelper? = null
     private lateinit var openDB: OpenDB
     private lateinit var database: SQLiteDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater);
         setContentView(binding.getRoot());
+
+        //db = CopyDbHelper(this)
+        //db?.openDatabase()
+
         openDB = OpenDB(this)
         database = openDB.readableDatabase // hoặc openDB.writableDatabase
         binding.buttonDangNhap.setOnClickListener {
             if(checkDangNhap()){
                 val userid = binding.editTextTaiKhoan.text.toString()
                 val intent = Intent(this,TrangChu::class.java)
-                intent.putExtra("id",userid)
                 database.close()
+                intent.putExtra("id",userid)
                 startActivity(intent)
             }
             else
@@ -64,4 +69,5 @@ class MainActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
     }
+
 }

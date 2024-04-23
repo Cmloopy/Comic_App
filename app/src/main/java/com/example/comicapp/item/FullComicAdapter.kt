@@ -10,27 +10,26 @@ import com.example.comicapp.R
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
-class RecomendComic(val context: Activity, val list: List<ComicData>): ArrayAdapter<ComicData>(context, R.layout.list_comic) {
+class FullComicAdapter(val activity: Activity, val list: List<ComicData>): ArrayAdapter<ComicData>(activity, R.layout.listall_comic) {
     private val storageReference = FirebaseStorage.getInstance().reference
 
     override fun getCount(): Int {
-        return 2
+        return list.size
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val contexts = context.layoutInflater
-        val rowView = contexts.inflate(R.layout.list_comic,parent,false)
+        val contexts = activity.layoutInflater
+        val rowView = contexts.inflate(R.layout.listall_comic,parent,false)
 
-        val img = rowView.findViewById<ImageView>(R.id.anh_bia)
-        val name = rowView.findViewById<TextView>(R.id.name_comic)
+        val imgg = rowView.findViewById<ImageView>(R.id.bia)
+        val tenn = rowView.findViewById<TextView>(R.id.tenn)
 
-
-        name.text = list[position].name_comic
+        tenn.text = list[position].name_comic
         val imagePath = list[position].url
         if (imagePath != null) {
             val imageRef = storageReference.child(imagePath)
             imageRef.downloadUrl.addOnSuccessListener { uri ->
-                Picasso.get().load(uri).into(img)
+                Picasso.get().load(uri).into(imgg)
             }.addOnFailureListener { exception ->
                 // Xử lý khi có lỗi xảy ra trong quá trình tải ảnh
             }

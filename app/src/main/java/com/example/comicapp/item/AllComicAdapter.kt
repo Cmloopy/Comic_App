@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.comicapp.R
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 
 class AllComicAdapter (val activity: Activity, val list: List<ComicData>): ArrayAdapter<ComicData>(activity, R.layout.listall_comic) {
     private val storageReference = FirebaseStorage.getInstance().reference
@@ -24,6 +25,15 @@ class AllComicAdapter (val activity: Activity, val list: List<ComicData>): Array
         val tenn = rowView.findViewById<TextView>(R.id.tenn)
 
         tenn.text = list[position].name_comic
+        val imagePath = list[position].url
+        if (imagePath != null) {
+            val imageRef = storageReference.child(imagePath)
+            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                Picasso.get().load(uri).into(imgg)
+            }.addOnFailureListener { exception ->
+                // Xử lý khi có lỗi xảy ra trong quá trình tải ảnh
+            }
+        }
 
         return rowView
     }

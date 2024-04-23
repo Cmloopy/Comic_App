@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/comicinfo"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="5dp"
+    android:background="@drawable/nen"
+    tools:context=".infocomic.InfoComicAcitivty">
+
+    <ImageView
+        android:id="@+id/backkk"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back" />
+
+    <TextView
+        android:id="@+id/info_tentruyen"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:text="Vo Luyen Dinh Phong" />
+
+    <LinearLayout
+        android:paddingTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/info_anhbia"
+            android:layout_marginLeft="15dp"
+            android:layout_width="140dp"
+            android:layout_height="200dp"
+            android:layout_gravity="top"
+            android:scaleType="centerCrop"
+            android:src="@drawable/anh_bia" />
+
+        <LinearLayout
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/info_tacgia"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:text="Tác Giả: " />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/info_theloai"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:text="Thể Loại: " />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/info_luotxem"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:text="Lượt Xem: N/A" />
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonDTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Đọc từ đầu" />
+
+                <Button
+                    android:id="@+id/buttonTheoDoi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Theo dõi" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+        android:text="Giới thiệu" />
+
+    <TextView
+        android:id="@+id/info_gt"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Noi dung gioi thieu o day...." />
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/textView10"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="12dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chương truyện" />
+
+    <ListView
+        android:layout_marginTop="10dp"
+        android:id="@+id/listchapter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
