@@ -55,7 +55,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.firebaseui:firebase-ui-storage:8.0.2")
 
 }

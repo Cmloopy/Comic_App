@@ -1,11 +1,14 @@
 package com.example.comicapp.infocomic
 
+import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.comicapp.OpenDB
 import com.example.comicapp.databinding.ActivityInfocomicBinding
+import com.example.comicapp.item.AllComicAdapter
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
@@ -13,7 +16,7 @@ private lateinit var binding: ActivityInfocomicBinding
 
 class InfoComicAcitivty : AppCompatActivity() {
     private val storageReference = FirebaseStorage.getInstance().reference
-
+    private lateinit var cht:ChapAdapter
     private lateinit var openDB: OpenDB
     private lateinit var database: SQLiteDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +28,6 @@ class InfoComicAcitivty : AppCompatActivity() {
 
         val data = intent.getStringExtra("id_comic")
         val cursor: Cursor = database.rawQuery("select * from comic where id_comic = '$data'",null)
-        var chap_num:Int = 0
         cursor.use {
             if(cursor.moveToFirst()){
                 binding.infoTentruyen.setText(cursor.getString(1)).toString()
@@ -39,7 +41,6 @@ class InfoComicAcitivty : AppCompatActivity() {
                     }
                 }
                 binding.infoGt.setText(cursor.getString(2))
-                chap_num = cursor.getInt(6)
             }
         }
         val cursor2:Cursor = database.rawQuery("select name_author from author join comic on author.id_author = comic.id_author where comic.id_comic = '$data'",null)
@@ -59,6 +60,34 @@ class InfoComicAcitivty : AppCompatActivity() {
                 s += cursor3.getString(0).toString() + " - "
             }
             binding.infoTheloai.setText("Thể Loại: "+ s +"...")
+        }
+        val listChap = mutableListOf<Chapter>()
+        val cursor4: Cursor = database.rawQuery("select id_chapter,name_chapter,url_chapter from chapter join comic on comic.id_comic = chapter.id_comic where comic.id_comic = '$data'",null)
+        cursor4.use {
+            if (cursor4.moveToLast()){
+                var a = cursor4.getString(0)
+                var b = cursor4.getString(1)
+                var c = cursor4.getString(2)
+                listChap.add(Chapter(a,b,c))
+            }
+            while (cursor4.moveToPrevious()){
+                var a = cursor4.getString(0)
+                var b = cursor4.getString(1)
+                var c = cursor4.getString(2)
+                listChap.add(Chapter(a,b,c))
+            }
+        }
+
+        val chapter_in_comic = listChap.size
+
+        cht = ChapAdapter(this,listChap)
+        binding.listchapter.adapter = cht
+
+        binding.listchapter.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val intent = Intent(this,FinalActivity::class.java)
+            intent.putExtra("sochap",chapter_in_comic)
+            intent.putExtra("link_chap",listChap[position].url_chapter)
+            startActivity(intent)
         }
     }
 

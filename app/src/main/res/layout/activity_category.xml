@@ -37,14 +37,16 @@
     </LinearLayout>
 
     <Spinner
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/spinnerCategory"
         android:layout_width="match_parent"
-
+        android:spinnerMode="dropdown"
         android:layout_height="wrap_content" />
 
     <GridView
-        android:layout_marginTop="10dp"
+        android:id="@+id/comic_search_category"
+        android:layout_marginTop="15dp"
+        android:numColumns="3"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
