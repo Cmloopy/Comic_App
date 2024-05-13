@@ -8,7 +8,6 @@ import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.comicapp.OpenDB
 import com.example.comicapp.databinding.ActivityInfocomicBinding
-import com.example.comicapp.item.AllComicAdapter
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
@@ -27,6 +26,7 @@ class InfoComicAcitivty : AppCompatActivity() {
         database = openDB.readableDatabase
 
         val data = intent.getStringExtra("id_comic")
+        val idd = intent.getStringExtra("id")
         val cursor: Cursor = database.rawQuery("select * from comic where id_comic = '$data'",null)
         cursor.use {
             if(cursor.moveToFirst()){
@@ -61,6 +61,7 @@ class InfoComicAcitivty : AppCompatActivity() {
             }
             binding.infoTheloai.setText("Thể Loại: "+ s +"...")
         }
+        val list_url = mutableListOf<String>()
         val listChap = mutableListOf<Chapter>()
         val cursor4: Cursor = database.rawQuery("select id_chapter,name_chapter,url_chapter from chapter join comic on comic.id_comic = chapter.id_comic where comic.id_comic = '$data'",null)
         cursor4.use {
@@ -69,24 +70,35 @@ class InfoComicAcitivty : AppCompatActivity() {
                 var b = cursor4.getString(1)
                 var c = cursor4.getString(2)
                 listChap.add(Chapter(a,b,c))
+                list_url.add(c)
             }
             while (cursor4.moveToPrevious()){
                 var a = cursor4.getString(0)
                 var b = cursor4.getString(1)
                 var c = cursor4.getString(2)
                 listChap.add(Chapter(a,b,c))
+                list_url.add(c)
             }
         }
 
-        val chapter_in_comic = listChap.size
+        val list_url_chapter: ArrayList<String> = ArrayList(list_url)
+        list_url_chapter.reverse()
 
         cht = ChapAdapter(this,listChap)
         binding.listchapter.adapter = cht
 
         binding.listchapter.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val intent = Intent(this,FinalActivity::class.java)
-            intent.putExtra("sochap",chapter_in_comic)
+            intent.putStringArrayListExtra("list_url",list_url_chapter)
             intent.putExtra("link_chap",listChap[position].url_chapter)
+            intent.putExtra("id",idd)
+            startActivity(intent)
+        }
+        binding.buttonDTD.setOnClickListener {
+            val intent = Intent(this,FinalActivity::class.java)
+            intent.putStringArrayListExtra("list_url",list_url_chapter)
+            intent.putExtra("link_chap",listChap[listChap.size-1].url_chapter)
+            intent.putExtra("id",idd)
             startActivity(intent)
         }
     }

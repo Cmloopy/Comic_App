@@ -1,17 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.BxhFragment"
     android:paddingBottom="65dp"
+    android:orientation="vertical"
     android:background="@drawable/nen">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="bxh"
-        android:textSize="50dp"/>
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@drawable/nn"
+        android:paddingTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textBXHTOP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="27dp"
+            android:textStyle="normal"
+            android:text="Bảng Xếp Hạng" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_marginTop="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:drawableRight="@drawable/trophy"
+            android:drawableLeft="@drawable/trophy"
+            android:text=" Top Xem Nhiều " />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_bxhh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

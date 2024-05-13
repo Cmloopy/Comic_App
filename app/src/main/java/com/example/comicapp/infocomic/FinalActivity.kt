@@ -1,18 +1,15 @@
 package com.example.comicapp.infocomic
 
+import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.comicapp.OpenDB
-import com.example.comicapp.R
+import com.example.comicapp.TrangChu
 import com.example.comicapp.databinding.ActivityFinalBinding
 import com.google.firebase.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.storage
 import com.squareup.picasso.Picasso
 
@@ -30,7 +27,10 @@ class FinalActivity : AppCompatActivity() {
         openDB = OpenDB(this)
         database = openDB.readableDatabase
 
-        val sochap = intent.getStringExtra("sochap")
+        val idd = intent.getStringExtra("id")
+
+        val list_url_chapter = intent.getStringArrayListExtra("list_url")
+
         val url_chap = intent.getStringExtra("link_chap").toString()
 
         val storage = Firebase.storage
@@ -48,15 +48,69 @@ class FinalActivity : AppCompatActivity() {
                 listResult.items.forEach { item ->
                     fileNames.add(url_chap + "/" + item.name)
                 }
+
                 fullHD = LoadImageAdapter(this,fileNames)
                 binding.allcomicimage.adapter = fullHD
-                /*val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, fileNames)
-                binding.allimagecomic.adapter = adapter*/
             }
             .addOnFailureListener { exception ->
-                // Handle any errors
-            }
 
+            }
+        val sc = list_url_chapter!!.size
+        binding.buttonNext.setOnClickListener {
+            val i = list_url_chapter!!.indexOf(url_chap)
+            if(i < sc-1){
+                val intent = Intent(this,FinalActivity::class.java)
+                intent.putExtra("link_chap",list_url_chapter[i+1])
+                intent.putStringArrayListExtra("list_url",list_url_chapter)
+                startActivity(intent)
+            }
+            else{
+                showAlertDialog1()
+            }
+        }
+        binding.buttonPre.setOnClickListener {
+            val i = list_url_chapter!!.indexOf(url_chap)
+            if(i > 0){
+                val intent = Intent(this,FinalActivity::class.java)
+                intent.putExtra("link_chap",list_url_chapter[i-1])
+                intent.putStringArrayListExtra("list_url",list_url_chapter)
+                intent.putExtra("id",idd)
+                startActivity(intent)
+                finish()
+            }
+            else{
+                showAlertDialog2()
+            }
+        }
+        binding.buttonBackhome.setOnClickListener {
+            val intent = Intent(this,TrangChu::class.java)
+            intent.putExtra("id",idd)
+            startActivity(intent)
+        }
+    }
+
+    private fun showAlertDialog1() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Thông Báo!!")
+        builder.setMessage("Hết Chap mới ròii =.=")
+        builder.setPositiveButton("OK") { dialog, which ->
+            dialog.dismiss() // Đóng AlertDialog
+        }
+        // Tạo và hiển thị AlertDialog
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun showAlertDialog2() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Thông Báo!!")
+        builder.setMessage("Đây là Chap đầu tiên =.=")
+        builder.setPositiveButton("OK") { dialog, which ->
+            dialog.dismiss() // Đóng AlertDialog
+        }
+        // Tạo và hiển thị AlertDialog
+        val dialog = builder.create()
+        dialog.show()
     }
 
     override fun onDestroy() {

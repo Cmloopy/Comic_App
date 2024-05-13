@@ -25,6 +25,8 @@ class ListAllActivity : AppCompatActivity() {
         openDB = OpenDB(this)
         database = openDB.readableDatabase
 
+        val idd = intent.getStringExtra("id")
+
         val cursor: Cursor = database.rawQuery("SELECT * FROM comic",null)
 
         val listAll = mutableListOf<ComicData>()
@@ -48,6 +50,7 @@ class ListAllActivity : AppCompatActivity() {
         binding.tatcatruyen.adapter = full
         binding.tatcatruyen.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val intent = Intent(this, InfoComicAcitivty::class.java)
+            intent.putExtra("id",idd)
             intent.putExtra("id_comic",listAll[position].id_comic)
             startActivity(intent)
         }

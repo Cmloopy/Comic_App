@@ -83,6 +83,7 @@ class TrangChinhFragment : Fragment() {
         binding.listtruyen.adapter = recomendComic
         binding.listtruyen.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val intent = Intent(requireContext(),InfoComicAcitivty::class.java)
+            intent.putExtra("id",data)
             intent.putExtra("id_comic",list[position].id_comic)
             startActivity(intent)
         }
@@ -91,6 +92,7 @@ class TrangChinhFragment : Fragment() {
         binding.listAlll.adapter = all
         binding.listAlll.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val intent = Intent(requireContext(),InfoComicAcitivty::class.java)
+            intent.putExtra("id",data)
             intent.putExtra("id_comic",listAll[position].id_comic)
             startActivity(intent)
         }
@@ -159,6 +161,7 @@ class TrangChinhFragment : Fragment() {
         binding.comicrcm1.adapter = all1
         binding.comicrcm1.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val intent = Intent(requireContext(),InfoComicAcitivty::class.java)
+            intent.putExtra("id",data)
             intent.putExtra("id_comic",listCN[position].id_comic)
             startActivity(intent)
         }
@@ -167,6 +170,7 @@ class TrangChinhFragment : Fragment() {
         binding.comicrcm2.adapter = all2
         binding.comicrcm2.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val intent = Intent(requireContext(),InfoComicAcitivty::class.java)
+            intent.putExtra("id",data)
             intent.putExtra("id_comic",listKR[position].id_comic)
             startActivity(intent)
         }
@@ -176,19 +180,23 @@ class TrangChinhFragment : Fragment() {
         binding.comicrcm3.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val intent = Intent(requireContext(),InfoComicAcitivty::class.java)
             intent.putExtra("id_comic",listJP[position].id_comic)
+            intent.putExtra("id",data)
             startActivity(intent)
         }
 
         binding.buttonListall.setOnClickListener {
             val intent = Intent(requireContext(), ListAllActivity::class.java)
+            intent.putExtra("id",data)
             startActivity(intent)
         }
         binding.search.setOnClickListener {
             val intent = Intent(requireContext(),SearchActivity::class.java)
+            intent.putExtra("id",data)
             startActivity(intent)
         }
         binding.category.setOnClickListener {
             val intent = Intent(requireContext(),CategoryActivity::class.java)
+            intent.putExtra("id",data)
             startActivity(intent)
         }
 

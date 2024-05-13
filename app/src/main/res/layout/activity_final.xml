@@ -42,11 +42,11 @@
 
         <ImageView
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="40dp"
-            android:id="@+id/button_backlist"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/button_backhome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/baseline_list_all_chapter" />
+            app:srcCompat="@drawable/baseline_home_filled_24" />
     </LinearLayout>
 
     <GridView

@@ -27,6 +27,8 @@ class CategoryActivity : AppCompatActivity() {
         openDB = OpenDB(this)
         database = openDB.readableDatabase
 
+        val idd = intent.getStringExtra("id")
+
         val listCTG = mutableListOf<String>()
         listCTG.add("")
 
@@ -80,10 +82,14 @@ class CategoryActivity : AppCompatActivity() {
                 binding.comicSearchCategory.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
                     val intent = Intent(this@CategoryActivity, InfoComicAcitivty::class.java)
                     intent.putExtra("id_comic",listtttt[position].id_comic)
+                    intent.putExtra("id",idd)
                     startActivity(intent)
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+        binding.backkk.setOnClickListener {
+
         }
     }
 
@@ -91,5 +97,4 @@ class CategoryActivity : AppCompatActivity() {
         database.close()
         super.onDestroy()
     }
-
 }
