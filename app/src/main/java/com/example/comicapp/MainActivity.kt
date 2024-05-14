@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
                 database.close()
                 intent.putExtra("id",userid)
                 startActivity(intent)
+                finish()
             }
             else
             {

@@ -1,5 +1,6 @@
 package com.example.comicapp
 
+import android.content.ContentValues
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
@@ -21,14 +22,13 @@ class SignupActivity : AppCompatActivity() {
         setContentView(binding.getRoot());
 
         openDB = OpenDB(this)
-        database = openDB.readableDatabase
+        database = openDB.writableDatabase
 
         binding.buttonDangKi.setOnClickListener {
             checkSignUp()
         }
         binding.buttonTroVeTrangDN.setOnClickListener {
-            val vetrangDN = Intent(this,MainActivity::class.java)
-            startActivity(vetrangDN)
+            backLogin()
         }
     }
 
@@ -42,10 +42,27 @@ class SignupActivity : AppCompatActivity() {
         var cursor = database.rawQuery("SELECT * FROM user WHERE username = '$usn'",null)
         cursor.use {
             if (cursor.moveToFirst()){
-                showAlertDialog()
+                Toast.makeText(this, "Tên tài khoản đã tồn tại!", Toast.LENGTH_SHORT).show()
             }
             else{
-                
+                val data = ContentValues().apply {
+                    put("id_user",usn)
+                    put("name_user",name)
+                    put("username",usn)
+                    put("pass",pw)
+                    put("email",mail)
+                    put("phone",sdt)
+                    put("count",0)
+                    put("levels",1)
+                }
+                val dkk = database.insert("user",null,data)
+                cursor.requery()
+                if(dkk == -1L){
+                    Toast.makeText(this, "ERROR!", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    showAlertDialog()
+                }
             }
         }
     }
@@ -53,17 +70,22 @@ class SignupActivity : AppCompatActivity() {
     private fun showAlertDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Thông Báo!")
-        builder.setMessage("Tên tài khoản đã tồn tại! Hãy sử dụng tên tài khoản khác.")
-        builder.setPositiveButton("OK") { dialog, which ->
-            binding.editTextTaiKhoanDangKi.setText("")
-            binding.editTextPassword.setText("")
-            binding.editTextEmailAddress.setText("")
-            binding.editTextPhone.setText("")
-            binding.editTextTenHT.setText("")
-            dialog.dismiss()
+        builder.setMessage("Đăng kí thành công!")
+        builder.setPositiveButton("Trở về trang đăng nhập") { dialog, which ->
+            backLogin()
         }
         // Tạo và hiển thị AlertDialog
         val dialog = builder.create()
         dialog.show()
+    }
+    private fun backLogin() {
+        val vetrangDN = Intent(this,MainActivity::class.java)
+        startActivity(vetrangDN)
+        finish()
+    }
+
+    override fun onDestroy() {
+        database.close()
+        super.onDestroy()
     }
 }

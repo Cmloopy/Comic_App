@@ -92,12 +92,25 @@
         android:textSize="20dp"/>
 
     <FrameLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="20dp"
         android:background="@color/white">
 
+        <GridView
+            android:id="@+id/listtheodoi"
+            android:numColumns="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
+
+    <Button
+        android:id="@+id/buttonDT"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Đổi Tên"
+        android:textSize="17dp"/>
 
     <Button
         android:layout_marginTop="10dp"

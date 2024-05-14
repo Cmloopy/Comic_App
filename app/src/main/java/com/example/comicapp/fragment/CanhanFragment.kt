@@ -38,6 +38,10 @@ class CanhanFragment : Fragment() {
             }
         }
 
+        binding.buttonDT.setOnClickListener {
+
+        }
+
         binding.buttonDMK.setOnClickListener {
             changePasswordDialog()
         }

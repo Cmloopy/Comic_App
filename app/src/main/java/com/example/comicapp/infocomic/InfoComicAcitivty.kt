@@ -3,6 +3,7 @@ package com.example.comicapp.infocomic
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
@@ -95,10 +96,10 @@ class InfoComicAcitivty : AppCompatActivity() {
             startActivity(intent)
         }
         binding.buttonDTD.setOnClickListener {
-            val intent = Intent(this,FinalActivity::class.java)
-            intent.putStringArrayListExtra("list_url",list_url_chapter)
-            intent.putExtra("link_chap",listChap[listChap.size-1].url_chapter)
-            intent.putExtra("id",idd)
+            val intent = Intent(this, FinalActivity::class.java)
+            intent.putStringArrayListExtra("list_url", list_url_chapter)
+            intent.putExtra("link_chap", listChap[listChap.size - 1].url_chapter)
+            intent.putExtra("id", idd)
             startActivity(intent)
         }
     }
