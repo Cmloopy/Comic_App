@@ -52,14 +52,14 @@ class TopFragment : Fragment() {
             if (cursor.moveToFirst()){
                 var name:String = cursor.getString(1)
                 var count: String = cursor.getInt(6).toString()
-                var level: String = cursor.getInt(7).toString()
+                var level: String = level(cursor.getInt(6))
                 list.add(TopData(listIcon[cnt],name,level,count))
                 cnt++
             }
             while (cursor.moveToNext()){
                 var name:String = cursor.getString(1)
                 var count: String = cursor.getInt(6).toString()
-                var level: String = cursor.getInt(7).toString()
+                var level: String = level(cursor.getInt(6))
                 list.add(TopData(listIcon[cnt],name,level,count))
                 cnt++
             }
@@ -68,6 +68,19 @@ class TopFragment : Fragment() {
         topAdapter = TopAdapter(requireActivity(),list)
         binding.topdoctruyen.adapter = topAdapter
         return binding.root
+    }
+
+    private fun level(a: Int): String{
+        val x = when(a) {
+            in 0..9 -> 1
+            in 10..99 -> 2
+            in 100..999 -> 3
+            in 1000..9999 -> 4
+            in 10000..99999 -> 5
+            in 100000..999999 -> 6
+            else -> 7
+        }
+        return Integer.toString(x)
     }
 
     override fun onDestroy() {

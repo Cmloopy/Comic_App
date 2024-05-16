@@ -89,12 +89,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Truyện Đang Theo Dõi"
-        android:textSize="20dp"/>
+        android:textSize="23dp"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="270dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/white">
 
         <GridView

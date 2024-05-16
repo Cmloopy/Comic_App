@@ -12,7 +12,7 @@ import com.example.comicapp.databinding.ActivityMainBinding
 
 private lateinit var binding: ActivityMainBinding
 class MainActivity : AppCompatActivity() {
-    //private var db:CopyDbHelper? = null
+    private var db:CopyDbHelper? = null
     private lateinit var openDB: OpenDB
     private lateinit var database: SQLiteDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater);
         setContentView(binding.getRoot());
 
-        //db = CopyDbHelper(this)
-        //db?.openDatabase()
+        db = CopyDbHelper(this)
+        db?.openDatabase()
 
         openDB = OpenDB(this)
         database = openDB.readableDatabase // hoặc openDB.writableDatabase

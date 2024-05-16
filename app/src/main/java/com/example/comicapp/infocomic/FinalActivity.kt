@@ -1,5 +1,6 @@
 package com.example.comicapp.infocomic
 
+import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -42,6 +43,7 @@ class FinalActivity : AppCompatActivity() {
                 binding.textChapp.setText(cursor.getString(1).toString())
             }
         }
+
         val fileNames = mutableListOf<String>()
         storageRef.listAll()
             .addOnSuccessListener { listResult ->
@@ -55,6 +57,29 @@ class FinalActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
 
             }
+
+        val updateCount = database.rawQuery("select * from user where id_user = '$idd'",null)
+        updateCount.use {
+            if (updateCount.moveToFirst()){
+                val c = updateCount.getInt(6) + 1
+                val dataupdate = ContentValues().apply {
+                    put("count",c)
+                }
+                database.update("user",dataupdate,"id_user = ?", arrayOf(updateCount.getString(0)))
+            }
+        }
+        val updateView = database.rawQuery("select * from comic join chapter on comic.id_comic = chapter.id_comic where chapter.url_chapter = '$url_chap'",null)
+        updateView.use {
+            if (updateView.moveToFirst()){
+                val v = updateView.getInt(3) + 1
+                val dataupdate = ContentValues().apply {
+                    put("view",v)
+                }
+                database.update("comic",dataupdate,"id_comic = ?", arrayOf(updateView.getString(0)))
+                updateView.requery()
+            }
+        }
+
         val sc = list_url_chapter!!.size
         binding.buttonNext.setOnClickListener {
             val i = list_url_chapter!!.indexOf(url_chap)
@@ -63,6 +88,7 @@ class FinalActivity : AppCompatActivity() {
                 intent.putExtra("link_chap",list_url_chapter[i+1])
                 intent.putStringArrayListExtra("list_url",list_url_chapter)
                 startActivity(intent)
+                finish()
             }
             else{
                 showAlertDialog1()

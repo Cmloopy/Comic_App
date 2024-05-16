@@ -1,5 +1,6 @@
 package com.example.comicapp.infocomic
 
+import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -8,9 +9,12 @@ import android.os.Bundle
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.comicapp.OpenDB
+import com.example.comicapp.R
 import com.example.comicapp.databinding.ActivityInfocomicBinding
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 private lateinit var binding: ActivityInfocomicBinding
 
@@ -19,15 +23,19 @@ class InfoComicAcitivty : AppCompatActivity() {
     private lateinit var cht:ChapAdapter
     private lateinit var openDB: OpenDB
     private lateinit var database: SQLiteDatabase
+    private lateinit var idd1 : String
+    private lateinit var data1 : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInfocomicBinding.inflate(layoutInflater);
         setContentView(binding.getRoot());
         openDB = OpenDB(this)
-        database = openDB.readableDatabase
+        database = openDB.writableDatabase
 
         val data = intent.getStringExtra("id_comic")
         val idd = intent.getStringExtra("id")
+        idd1 = idd.toString()
+        data1 = data.toString()
         val cursor: Cursor = database.rawQuery("select * from comic where id_comic = '$data'",null)
         cursor.use {
             if(cursor.moveToFirst()){
@@ -88,6 +96,8 @@ class InfoComicAcitivty : AppCompatActivity() {
         cht = ChapAdapter(this,listChap)
         binding.listchapter.adapter = cht
 
+        checkTD()
+
         binding.listchapter.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val intent = Intent(this,FinalActivity::class.java)
             intent.putStringArrayListExtra("list_url",list_url_chapter)
@@ -102,6 +112,47 @@ class InfoComicAcitivty : AppCompatActivity() {
             intent.putExtra("id", idd)
             startActivity(intent)
         }
+        val tttd  = binding.buttonTheoDoi.text.toString()
+        binding.buttonTheoDoi.setOnClickListener {
+            if(tttd == "Theo dõi"){
+                val datatd = ContentValues().apply {
+                    put("id_user",idd)
+                    put("id_comic",data)
+                    put("fl_time",getCurrentDate())
+                }
+                database.insert("follow",null,datatd)
+                checkTD()
+            }
+            else{
+                val cursorCheck = database.rawQuery("select * from follow where id_user = '$idd' and id_comic = '$data'",null)
+                cursorCheck.use {
+                    if(cursorCheck.moveToFirst()){
+                        database.delete("follow","id_fl = ?", arrayOf(cursorCheck.getString(0)))
+                        checkTD()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun checkTD(){
+        val cursorCheck = database.rawQuery("select * from follow where id_user = '$idd1' and id_comic = '$data1'",null)
+        if(cursorCheck.moveToFirst()){
+            binding.buttonTheoDoi.setText("Bỏ theo dõi")
+            binding.buttonTheoDoi.setBackgroundColor(Color.GRAY)
+        }
+        else{
+            binding.buttonTheoDoi.setText("Theo dõi")
+            val color = resources.getColor(R.color.lavender, theme)
+            binding.buttonTheoDoi.setBackgroundColor(color)
+        }
+        cursorCheck.requery()
+    }
+
+    fun getCurrentDate(): String {
+        val currentDate = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yy-MM-dd")
+        return currentDate.format(formatter)
     }
 
     override fun onDestroy() {
