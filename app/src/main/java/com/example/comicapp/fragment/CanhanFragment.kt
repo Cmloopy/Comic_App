@@ -12,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.comicapp.ChangeActivity
 import com.example.comicapp.MainActivity
 import com.example.comicapp.OpenDB
 import com.example.comicapp.databinding.FragmentCanhanBinding
@@ -73,12 +74,10 @@ class CanhanFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.buttonDT.setOnClickListener {
-
-        }
-
-        binding.buttonDMK.setOnClickListener {
-            changePasswordDialog()
+        binding.buttonTDTT.setOnClickListener {
+            val intent = Intent(requireContext(),ChangeActivity::class.java)
+            intent.putExtra("id",data)
+            startActivity(intent)
         }
 
         binding.buttonDangXuat.setOnClickListener {
@@ -87,9 +86,6 @@ class CanhanFragment : Fragment() {
         return binding.root
     }
 
-    private fun changePasswordDialog() {
-        
-    }
 
     private fun showAlertDialog() {
         val builder = AlertDialog.Builder(requireContext())
@@ -99,8 +95,9 @@ class CanhanFragment : Fragment() {
             dialog.dismiss() // Đóng AlertDialog
         }
         builder.setNegativeButton("Đúng rồi!") { dialog, which ->
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            val intent = Intent(requireContext(), MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
         val dialog = builder.create()

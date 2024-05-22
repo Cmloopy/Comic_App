@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/changee"
+    android:paddingTop="30dp"
+    android:paddingRight="25dp"
+    android:paddingLeft="25dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChangeActivity">
+
+    <TextView
+        android:id="@+id/textViewwwww"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Thay Đổi Thông Tin" />
+
+    <TextView
+        android:id="@+id/textdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="13dp"
+        android:textSize="23dp"
+        android:text="Đổi tên:" />
+
+    <EditText
+        android:id="@+id/editTextnewten"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="15dp"
+        android:inputType="text"
+        android:text=""
+        android:minHeight="50dp"
+        android:hint="Nhập tên mới" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/buttonDoiTen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="33dp"
+        android:textSize="18dp"
+        android:text="Lưu Thay Đổi" />
+
+    <TextView
+        android:id="@+id/textdoiMKKK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="23dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        android:text="Đổi mật khẩu:" />
+
+    <EditText
+        android:id="@+id/editTextmkcu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:minHeight="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="Nhập mật khẩu cũ"
+        android:text=""
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editTextmkmoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:minHeight="50dp"
+        android:layout_marginTop="10dp"
+        android:hint= "Nhập mật khẩu mới"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editTextnhaplai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:minHeight="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="Nhập lại mật khẩu mới"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/textThongBao"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:text="" />
+
+    <Button
+        android:layout_marginTop="12dp"
+        android:id="@+id/buttonDMKKK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:height="30dp"
+        android:text="Đổi Mật Khẩu" />
+
+</LinearLayout>

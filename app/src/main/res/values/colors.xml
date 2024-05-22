@@ -6,4 +6,6 @@
     <color name="bolddd">#E4FFFFFF</color>
     <color name="nonblack">#E4131313</color>
     <color name="resss">#E4B6B0B0</color>
+    <color name="red">#E4FF0000</color>
+    <color name="green">#E413B600</color>
 </resources>

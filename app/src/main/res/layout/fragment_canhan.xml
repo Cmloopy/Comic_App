@@ -104,28 +104,22 @@
             android:layout_height="match_parent" />
     </FrameLayout>
 
+
+
     <Button
-        android:id="@+id/buttonDT"
         android:layout_marginTop="20dp"
+        android:id="@+id/buttonTDTT"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="Đổi Tên"
+        android:text="Thay Đổi Thông Tin"
         android:textSize="17dp"/>
 
     <Button
-        android:layout_marginTop="10dp"
-        android:id="@+id/buttonDMK"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="Đổi Mật Khẩu"
-        android:textSize="17dp"/>
-
-    <Button
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/buttonDangXuat"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:textSize="17dp"
+        android:layout_height="60dp"
+        android:textSize="18dp"
         android:textStyle="bold"
         android:text="Đăng Xuất" />
 
