@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:paddingTop="5dp"
     android:background="@drawable/nen"
-    tools:context=".infocomic.InfoComicAcitivty">
+    tools:context=".adapter.InfoComicAcitivty">
 
     <ImageView
         android:id="@+id/backkk"
@@ -134,6 +134,7 @@
     <ListView
         android:layout_marginTop="10dp"
         android:id="@+id/listchapter"
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -9,30 +9,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Toast
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.comicapp.CategoryActivity
 import com.example.comicapp.ListAllActivity
-import com.example.comicapp.OpenDB
+import com.example.comicapp.dtbase.OpenDB
 import com.example.comicapp.R
 import com.example.comicapp.SearchActivity
 import com.example.comicapp.databinding.FragmentTrangchinhBinding
-import com.example.comicapp.infocomic.InfoComicAcitivty
-import com.example.comicapp.item.AllComicAdapter
+import com.example.comicapp.adapter.InfoComicAcitivty
+import com.example.comicapp.adapter.AllComicAdapter
 import com.example.comicapp.item.ComicData
-import com.example.comicapp.item.RecomendComic
+import com.example.comicapp.adapter.RecomendComic
 
 private lateinit var bbinding: FragmentTrangchinhBinding
 private val binding get() = bbinding!!
 
 class TrangChinhFragment : Fragment() {
-    private lateinit var recomendComic:RecomendComic
+    private lateinit var recomendComic: RecomendComic
     private lateinit var all: AllComicAdapter
     private lateinit var all1: AllComicAdapter
     private lateinit var all2: AllComicAdapter
     private lateinit var all3: AllComicAdapter
     private lateinit var openDB: OpenDB
     private lateinit var database: SQLiteDatabase
+    private lateinit var dataa: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,16 +43,34 @@ class TrangChinhFragment : Fragment() {
 
         val data = arguments?.getString("id")
 
+        dataa = data.toString()
+
         openDB = OpenDB(requireContext())
         database = openDB.readableDatabase
 
         val arrlist: ArrayList<SlideModel> = ArrayList()
-        arrlist.add(SlideModel(R.drawable.banner1))
-        arrlist.add(SlideModel(R.drawable.banner2))
-        arrlist.add(SlideModel(R.drawable.banner3))
-        arrlist.add(SlideModel(R.drawable.banner4))
+        arrlist.add(SlideModel(R.drawable.banner1, ScaleTypes.FIT))
+        arrlist.add(SlideModel(R.drawable.banner2, ScaleTypes.FIT))
+        arrlist.add(SlideModel(R.drawable.banner3, ScaleTypes.FIT))
+        arrlist.add(SlideModel(R.drawable.banner4, ScaleTypes.FIT))
 
         binding.banner.setImageList(arrlist)
+
+        binding.banner.setItemClickListener(object : ItemClickListener {
+            override fun doubleClick(position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(position: Int) {
+                when (position) {
+                    0 -> nextActivity("cm25",dataa)
+                    1 -> nextActivity("cm12",dataa)
+                    2 -> nextActivity("cm02",dataa)
+                    3 -> nextActivity("cm26",dataa)
+                }
+            }
+        })
+
 
         val cursor: Cursor = database.rawQuery("SELECT * FROM comic",null)
 
@@ -62,15 +82,15 @@ class TrangChinhFragment : Fragment() {
 
         cursor.use {
             if(cursor.moveToFirst()){
-                var id = cursor.getString(0)
-                var name = cursor.getString(1)
-                var img = cursor.getString(4)
+                val id = cursor.getString(0)
+                val name = cursor.getString(1)
+                val img = cursor.getString(4)
                 listAll.add(ComicData(id,img,name))
             }
             while(cursor.moveToNext()){
-                var id = cursor.getString(0)
-                var name = cursor.getString(1)
-                var img = cursor.getString(4)
+                val id = cursor.getString(0)
+                val name = cursor.getString(1)
+                val img = cursor.getString(4)
                 listAll.add(ComicData(id,img,name))
             }
         }
@@ -104,15 +124,15 @@ class TrangChinhFragment : Fragment() {
 
         cursor2.use {
             if(cursor2.moveToFirst()){
-                var id = cursor2.getString(0)
-                var name = cursor2.getString(1)
-                var img = cursor2.getString(4)
+                val id = cursor2.getString(0)
+                val name = cursor2.getString(1)
+                val img = cursor2.getString(4)
                 listCN.add(ComicData(id,img,name))
             }
             while(cursor2.moveToNext()){
-                var id = cursor2.getString(0)
-                var name = cursor2.getString(1)
-                var img = cursor2.getString(4)
+                val id = cursor2.getString(0)
+                val name = cursor2.getString(1)
+                val img = cursor2.getString(4)
                 listCN.add(ComicData(id,img,name))
             }
         }
@@ -124,15 +144,15 @@ class TrangChinhFragment : Fragment() {
 
         cursor3.use {
             if(cursor3.moveToFirst()){
-                var id = cursor3.getString(0)
-                var name = cursor3.getString(1)
-                var img = cursor3.getString(4)
+                val id = cursor3.getString(0)
+                val name = cursor3.getString(1)
+                val img = cursor3.getString(4)
                 listKR.add(ComicData(id,img,name))
             }
             while(cursor3.moveToNext()){
-                var id = cursor3.getString(0)
-                var name = cursor3.getString(1)
-                var img = cursor3.getString(4)
+                val id = cursor3.getString(0)
+                val name = cursor3.getString(1)
+                val img = cursor3.getString(4)
                 listKR.add(ComicData(id,img,name))
             }
         }
@@ -144,15 +164,15 @@ class TrangChinhFragment : Fragment() {
 
         cursor4.use {
             if(cursor4.moveToFirst()){
-                var id = cursor4.getString(0)
-                var name = cursor4.getString(1)
-                var img = cursor4.getString(4)
+                val id = cursor4.getString(0)
+                val name = cursor4.getString(1)
+                val img = cursor4.getString(4)
                 listJP.add(ComicData(id,img,name))
             }
             while(cursor4.moveToNext()){
-                var id = cursor4.getString(0)
-                var name = cursor4.getString(1)
-                var img = cursor4.getString(4)
+                val id = cursor4.getString(0)
+                val name = cursor4.getString(1)
+                val img = cursor4.getString(4)
                 listJP.add(ComicData(id,img,name))
             }
         }
@@ -202,6 +222,14 @@ class TrangChinhFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun nextActivity(s: String, x:String) {
+        val intent = Intent(requireContext(),InfoComicAcitivty::class.java)
+        intent.putExtra("id_comic",s)
+        intent.putExtra("id",x)
+        startActivity(intent)
+
     }
 
     fun randomUniquePair(min: Int, max: Int): Pair<Int, Int> {

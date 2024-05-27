@@ -6,15 +6,12 @@ import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.comicapp.databinding.ActivitySearchBinding
-import com.example.comicapp.infocomic.InfoComicAcitivty
+import com.example.comicapp.adapter.InfoComicAcitivty
 import com.example.comicapp.item.ComicData
-import com.example.comicapp.item.FullComicAdapter
+import com.example.comicapp.adapter.FullComicAdapter
+import com.example.comicapp.dtbase.OpenDB
 
 private lateinit var binding: ActivitySearchBinding
 class SearchActivity : AppCompatActivity() {

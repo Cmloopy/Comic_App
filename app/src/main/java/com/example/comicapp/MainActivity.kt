@@ -8,11 +8,13 @@ import androidx.appcompat.app.AlertDialog
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.comicapp.databinding.ActivityMainBinding
+import com.example.comicapp.dtbase.CopyDbHelper
+import com.example.comicapp.dtbase.OpenDB
 
 
 private lateinit var binding: ActivityMainBinding
 class MainActivity : AppCompatActivity() {
-    private var db:CopyDbHelper? = null
+    private var db: CopyDbHelper? = null
     private lateinit var openDB: OpenDB
     private lateinit var database: SQLiteDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +30,9 @@ class MainActivity : AppCompatActivity() {
         binding.buttonDangNhap.setOnClickListener {
             if(checkDangNhap()){
                 val userid = binding.editTextTaiKhoan.text.toString()
-                val intent = Intent(this,TrangChu::class.java)
+                val intent = Intent(this,TrangChu::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
                 database.close()
                 intent.putExtra("id",userid)
                 startActivity(intent)

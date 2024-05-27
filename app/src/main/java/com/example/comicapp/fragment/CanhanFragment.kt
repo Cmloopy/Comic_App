@@ -9,16 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.comicapp.ChangeActivity
 import com.example.comicapp.MainActivity
-import com.example.comicapp.OpenDB
+import com.example.comicapp.dtbase.OpenDB
 import com.example.comicapp.databinding.FragmentCanhanBinding
-import com.example.comicapp.infocomic.InfoComicAcitivty
+import com.example.comicapp.adapter.InfoComicAcitivty
 import com.example.comicapp.item.ComicData
-import com.example.comicapp.item.FollowAdapter
+import com.example.comicapp.adapter.FollowAdapter
 
 private lateinit var bbinding: FragmentCanhanBinding
 private val binding get() = bbinding!!

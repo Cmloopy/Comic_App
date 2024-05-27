@@ -7,10 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.comicapp.OpenDB
+import com.example.comicapp.dtbase.OpenDB
 import com.example.comicapp.R
 import com.example.comicapp.databinding.FragmentTopBinding
-import com.example.comicapp.item.TopAdapter
+import com.example.comicapp.adapter.TopAdapter
 import com.example.comicapp.item.TopData
 
 private lateinit var bbinding: FragmentTopBinding

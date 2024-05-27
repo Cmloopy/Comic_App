@@ -18,10 +18,10 @@
             android:name=".ChangeActivity"
             android:exported="false" />
         <activity
-            android:name=".infocomic.FinalActivity"
+            android:name=".adapter.FinalActivity"
             android:exported="false" />
         <activity
-            android:name=".infocomic.InfoComicAcitivty"
+            android:name=".adapter.InfoComicAcitivty"
             android:exported="false" />
         <activity
             android:name=".CategoryActivity"

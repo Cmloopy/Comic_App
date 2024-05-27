@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.comicapp.databinding.ActivityChangeBinding
+import com.example.comicapp.dtbase.OpenDB
 
 private lateinit var binding: ActivityChangeBinding
 class ChangeActivity : AppCompatActivity() {

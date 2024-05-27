@@ -9,13 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import com.example.comicapp.OpenDB
+import com.example.comicapp.dtbase.OpenDB
 import com.example.comicapp.R
 import com.example.comicapp.databinding.FragmentBxhBinding
-import com.example.comicapp.infocomic.InfoComicAcitivty
-import com.example.comicapp.item.BxhAdapter
+import com.example.comicapp.adapter.InfoComicAcitivty
+import com.example.comicapp.adapter.BxhAdapter
 import com.example.comicapp.item.BxhItemData
-import com.example.comicapp.item.TopData
 
 private lateinit var bbinding: FragmentBxhBinding
 private val binding get() = bbinding!!

@@ -9,9 +9,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.comicapp.databinding.ActivityCategoryBinding
-import com.example.comicapp.infocomic.InfoComicAcitivty
+import com.example.comicapp.adapter.InfoComicAcitivty
 import com.example.comicapp.item.ComicData
-import com.example.comicapp.item.FullComicAdapter
+import com.example.comicapp.adapter.FullComicAdapter
+import com.example.comicapp.dtbase.OpenDB
 
 private lateinit var binding: ActivityCategoryBinding
 

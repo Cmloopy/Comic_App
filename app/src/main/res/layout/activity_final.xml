@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".infocomic.FinalActivity">
+    tools:context=".adapter.FinalActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,6 +50,7 @@
     </LinearLayout>
 
     <GridView
+        android:scrollbars="none"
         android:id="@+id/allcomicimage"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
